@@ -1,5 +1,7 @@
 #libraries
 library(ggplot2)
+library(graphics)
+library(dplyr)
 
 # Insert Data
 students_performance  <- read.csv("StudentsPerformance.csv")
@@ -30,4 +32,14 @@ colnames(students_performance) <- c("STU_Gender", "STU_Ethnic", "PAR_Education",
 #Q4 
 #Does parental level of education affect students’ performance in general context? Explain your
 #answer with appropriate visuals.
-boxplot(students_performance$Maths ~ students_performance$PAR_Education, xlab = "Parental Level of Education", ylab = "Math Score", main = "Boxplot of Math Score by Parental Level of Education")
+barplot(tapply(students_performance$Maths, students_performance$PAR_Education, mean), xlab = "Parental Level of Education", ylab = "Average Math Score", main = "Bar Chart of Average Math Score by Parental Level of Education")
+barplot(tapply(students_performance$Reading, students_performance$PAR_Education, mean), xlab = "Parental Level of Education", ylab = "Average Reading Score", main = "Bar Chart of Average Reading Score by Parental Level of Education")
+barplot(tapply(students_performance$Writing, students_performance$PAR_Education, mean), xlab = "Parental Level of Education", ylab = "Average Writing Score", main = "Bar Chart of Average Writing Score by Parental Level of Education")
+
+#Q5
+#Does parental level of education affect students’ performance in specific context (based on
+#ethnicity)? Explain your answer with appropriate visuals.
+barplot(tapply(students_performance$Maths, list(students_performance$STU_Ethnic, 
+                                                students_performance$PAR_Education), mean), xlab = "Ethnicity", 
+                                                ylab = "Math Score", main = "Bar Chart of Math Score by Parental Level of Education and Ethnicity", 
+                                                beside = TRUE)
