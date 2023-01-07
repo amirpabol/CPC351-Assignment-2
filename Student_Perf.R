@@ -101,9 +101,29 @@ boxplot(Writing~STU_Ethnic,
 #Q4 by Ikmal Hakim
 #Does parental level of education affect students’ performance in general context? Explain your
 #answer with appropriate visuals.
-barplot(tapply(students_performance$Maths, students_performance$PAR_Education, mean), xlab = "Parental Level of Education", ylab = "Average Math Score", main = "Bar Chart of Average Math Score by Parental Level of Education")
-barplot(tapply(students_performance$Reading, students_performance$PAR_Education, mean), xlab = "Parental Level of Education", ylab = "Average Reading Score", main = "Bar Chart of Average Reading Score by Parental Level of Education")
-barplot(tapply(students_performance$Writing, students_performance$PAR_Education, mean), xlab = "Parental Level of Education", ylab = "Average Writing Score", main = "Bar Chart of Average Writing Score by Parental Level of Education")
+
+# create a vector of education levels in the desired order
+education_order <- c("high school", "some high school", "some college", "associate's degree", "bachelor's degree", "master's degree")
+
+# convert the PAR_Education variable to a factor with the levels in the desired order
+students_performance$PAR_Education <- factor(students_performance$PAR_Education, levels = education_order)
+
+# create a bar chart showing the mean Maths scores by parental education level
+ggplot(data = students_performance, aes(x = PAR_Education, y = Maths)) +
+  geom_col() +
+  labs(title = "Mean Math Scores by Parental Education Level", x = "Parental Education Level", y = "Mean Math Score")
+
+# create a bar chart showing the mean Reading scores by parental education level
+ggplot(data = students_performance, aes(x = PAR_Education, y = Reading)) +
+  geom_col() +
+  labs(title = "Mean Writing Scores by Parental Education Level", x = "Parental Education Level", y = "Mean Writing Score")
+
+# create a bar chart showing the mean Writing scores by parental education level
+ggplot(data = students_performance, aes(x = PAR_Education, y = Writing)) +
+  geom_col() +
+  labs(title = "Mean Writing Scores by Parental Education Level", x = "Parental Education Level", y = "Mean Writing Score")
+
+
 
 #Q5 by Ikmal Hakim
 #Does parental level of education affect students’ performance in specific context (based on
@@ -214,3 +234,4 @@ ggplot(students_performance, aes(x=PREP_CourseStatus, y=STU_Ethnic, fill=STU_Eth
           and Course Preparation Status")+
   xlab("Preparation for Course Status")+
   ylab("Student Ethnicity")
+
