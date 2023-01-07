@@ -7,8 +7,13 @@ library(magrittr)
 # read in the data from the csv file
 superStore <- read.csv("SuperStoreOrders.csv")
 
+<<<<<<< HEAD
 
 # function to remove the commas(,) and empty spaces from number field
+=======
+# function to remove the commas(,) and empty spaces from number field
+# source from Haziq Wahid
+>>>>>>> fc4b5c14a8496824e265b871bbef20cf6252c3d4
 numberize <- function(input){
   input <- gsub(",", "", input)
   input <- gsub(" ", "", input)
@@ -37,6 +42,10 @@ superStore$market <- as.factor(superStore$market)
 superStore$segment <- as.factor(superStore$segment)
 superStore$order_id <- as.factor(superStore$order_id)
 
+<<<<<<< HEAD
+=======
+superStore <- na.omit(superStore)
+>>>>>>> fc4b5c14a8496824e265b871bbef20cf6252c3d4
 summary(superStore)
 
 superStore <- slice(superStore, 1:1000)
@@ -184,12 +193,15 @@ barplot(ylim=c(0,60), superStore_avg$Avg,
 # extract the month from the order date column
 superStore$order_month <- format(as.Date(superStore$order_date, "%Y-%m-%d"), "%B")
 
+<<<<<<< HEAD
 # create a vector of months in the desired order
 month_order <- c("January", "February", "March", "April", "May", "June", "July", "August", "September", "October", "November", "December")
 
 # convert the order_month variable to a factor with the levels in the desired order
 superStore$order_month <- factor(superStore$order_month, levels = month_order)
 
+=======
+>>>>>>> fc4b5c14a8496824e265b871bbef20cf6252c3d4
 # create a table of the order counts by month
 order_counts_by_month <- table(superStore$order_month)
 
