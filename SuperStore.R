@@ -16,6 +16,8 @@ numberize <- function(input){
   return(as.numeric(input))
 }
 
+#Q8.A by amir azizi
+
 # Convert the OrderDate variable to a date data type
 superStore$order_date <- as.Date(superStore$order_date, format="%m/%d/%Y")
 
